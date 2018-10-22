@@ -1,0 +1,58 @@
+
+.bg {
+    padding-top: 30px;
+    background: url('https://images.pexels.com/photos/262730/pexels-photo-262730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center;
+    width: 100%;
+  }
+
+h2 {
+    font-family: 'Rock Salt', cursive;
+    font-size: 48px;
+    color: white;
+    padding-bottom: 20px;  
+    text-align: center;
+}
+
+h3 {
+    margin-left: 45px;
+}
+
+h4 {
+    color: white;
+    padding-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.movieTable {
+    width: 95%;
+    margin: auto;
+}
+
+#search {
+    width: 30%;
+    display: block;
+    margin-top: 15px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+#searchButton {
+    padding: 5px 25px;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    background-color: steelblue;
+    color: white;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    }
+
+.img-fluid {
+    display: block;
+    width: 12%;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
