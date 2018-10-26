@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import API from '../utils/API';
-import { Jumbotron, Table} from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import MovieSearchForm from './MovieSearchForm.js'
+import { Table } from 'react-bootstrap';
 import "./stylesheet.css";
 
 class SearchResultsTable extends Component {
@@ -10,14 +11,6 @@ class SearchResultsTable extends Component {
         search: ""
     };
 
-searchMovie = query => {
-API.search(query)
-.then(res => this.setState ({ result: res.data }))
-
- .catch(err => console.log (err));
-
-}
-
 //capture the text as entered by the user
 handleInputChange = event => {
     const value = event.target.value;
@@ -25,51 +18,56 @@ handleInputChange = event => {
     this.setState({
         [name]: value
     });
-    console.log(value)
+    console.log(value);
 };
 
-
-
+//On form submission, search movie database using captured text
 handleFormSubmit = event => {
     event.preventDefault();
-   this.searchMovie(this.state.search);
-    if (this.state.search.length > 0) {
-        console.log("No. of results:" + this.state.search.search.length);
-        console.log(this.state.result);
-      }
-      else {
-          alert("Please enter a movie title to search")
-          console.log("nothing to search")}
-  
+    this.searchMovie(this.state.search);
+    console.log(this.state.search);
+    if (this.state.search.length < 1) {
+        alert("Please enter a movie title")
+    }
+    else {
+        console.log("Searching...")
+    }
+
 };
 
-
-movieTable = () => (
-    <Table striped bordered className="movieTable">
-            <thead>
-                <tr>
-                    <th>Movie Poster</th>
-                    <th>Title</th>
-                    <th>Year</th>
-                </tr>
-            </thead>
-            <tbody>
-                {this.state.result.length ? (
-                    this.state.result.map(result => (
-                <tr key={result.imdbID}> 
-                    <td><img src={result.Poster} alt={this.state.result.Title} style={{width:"50%"}}></img></td>
-                    <td>{result.Title}</td>
-                    <td>{result.Year}</td>
-                </tr> 
-    ))
-    ) : (
-        <tr />
-    )}
-            </tbody> 
-              
-        </Table> 
+//Function to query the movie database
+searchMovie= query => {
+    API.search(query)
+        .then(res => this.setState({ result: res.data }))
+        .catch(err => console.log (err))
+        console.log(this.state.result)
        
+};
+movieTable = () => (
+<Table striped bordered className="movieTable">
+<thead>
+    <tr>
+        <th>Movie Poster</th>
+        <th>Title</th>
+        <th>Year</th>
+    </tr>
+</thead>
+<tbody>
+{this.state.result.search.length ? (
+this.state.result.search.map( result => (
+    <tr key = {this.state.result.imdbID}>
+        <td><img src={this.state.result.Poster} alt={this.state.result.Title} style={{width:"50%"}}></img></td>
+        <td>{this.state.result.Title}</td>
+        <td>{this.state.result.Year}</td>
+    </tr> 
+))
+) : (
+    <tr />
+)}
+</tbody> 
+</Table>
 );
+
 
 //Display search box in jumbotron and results in table form
 render () {
@@ -95,25 +93,22 @@ render () {
                 </tr>
             </thead>
             <tbody>
-                {this.state.result.length ? (
-                    this.state.result.map(result => (
-                <tr key={result.imdbID}> 
-                    <td><img src={result.Poster} alt={this.state.result.Title} style={{width:"50%"}}></img></td>
-                    <td>{result.Title}</td>
-                    <td>{result.Year}</td>
+            {this.state.result.length ? (
+            this.state.result.map(result => (
+                <tr key = {this.state.result.imdbID}>
+                    <td><img src={this.state.result.Poster} alt={this.state.result.Title} style={{width:"50%"}}></img></td>
+                    <td>{this.state.result.Title}</td>
+                    <td>{this.state.result.Year}</td>
                 </tr> 
-    ))
-    ) : (
-        <tr />
-    )}
+            ))
+            ) : (
+                <tr />
+            )}
             </tbody> 
-              
-        </Table> 
-        
+        </Table>
     </div>  
 );
 }
 }
-
 
 export default SearchResultsTable;

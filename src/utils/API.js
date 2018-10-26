@@ -7,6 +7,6 @@ const APIKEY = "&apikey=9f572b90";
 export default {
     search: function(query) {
       console.log("API query in progress");
-        return axios.get(BASEURL + query + APIKEY)
+        return axios.get(BASEURL + query + APIKEY);
           }
         };
