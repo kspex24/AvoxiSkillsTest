@@ -10,13 +10,11 @@ class SearchResultsTable extends Component {
         search: ""
     };
 
-  
-
 
 //Function to query the movie database
 searchMovie= query => {
     API.search(query)
-        .then(res => this.setState({ result: res.data.Search }))
+        .then(res => this.setState({ result: res.data.Search, search:"" }))
         .catch(err => console.log (err))
         console.log(this.state.result)
        
