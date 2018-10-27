@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import API from '../utils/API';
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Table } from 'react-bootstrap';
 import MovieSearchForm from './MovieSearchForm.js'
-import { Table } from 'react-bootstrap';
 import "./stylesheet.css";
 
 class SearchResultsTable extends Component {
@@ -10,6 +9,18 @@ class SearchResultsTable extends Component {
         result: [],
         search: ""
     };
+
+  
+
+
+//Function to query the movie database
+searchMovie= query => {
+    API.search(query)
+        .then(res => this.setState({ result: res.data.Search }))
+        .catch(err => console.log (err))
+        console.log(this.state.result)
+       
+};
 
 //capture the text as entered by the user
 handleInputChange = event => {
@@ -30,45 +41,39 @@ handleFormSubmit = event => {
         alert("Please enter a movie title")
     }
     else {
-        console.log("Searching...")
+        console.log("Launch Search...")
+      
     }
 
 };
 
-//Function to query the movie database
-searchMovie= query => {
-    API.search(query)
-        .then(res => this.setState({ result: res.data }))
-        .catch(err => console.log (err))
-        console.log(this.state.result)
-       
-};
+
+
 movieTable = () => (
  
-<Table striped bordered className="movieTable">
-<thead>
-    <tr>
-        <th>Movie Poster</th>
-        <th>Title</th>
-        <th>Year</th>
-    </tr>
-</thead>
-<tbody>
-   
-{this.state.result.length ? (
-this.state.result.map(result => (
-    <tr key={result.imdbID}>
-        <td><img src={result.Poster} alt={result.Title} style={{width:"50%"}}></img></td>
-        <td>{result.Title}</td>
-        <td>{result.Year}</td>
-    </tr> 
-))
-) : (
-    <tr />
-)}
-</tbody> 
-</Table>
-);
+    <Table striped bordered className="movieTable">
+    <thead>
+        <tr>
+            <th>Movie Poster</th>
+            <th>Title</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        {this.state.result.length ? (
+        this.state.result.map(result => (
+        <tr key={result.imdbID}>
+            <td><img src={result.Poster} alt={this.state.result.Title} style={{width:"20%"}}></img></td>
+            <td>{result.Title} <hr></hr> {this.state.result.Plot}</td>
+            <td>{result.Year}</td>
+        </tr> 
+        ))
+        ) : (
+        <tr />
+        )}
+    </tbody> 
+    </Table>
+    );
 
 
 //Display search box in jumbotron and results in table form
@@ -86,7 +91,9 @@ render () {
                 />
         </Jumbotron>
         <h3>Search Results:</h3>
-        <this.movieTable />
+       
+    <this.movieTable />
+  
     </div>  
 );
 }
