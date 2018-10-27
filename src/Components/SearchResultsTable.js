@@ -63,8 +63,8 @@ movieTable = () => (
         {this.state.result.length ? (
         this.state.result.map(result => (
         <tr key={result.imdbID}>
-            <td><img src={result.Poster} alt={this.state.result.Title} style={{width:"20%"}}></img></td>
-            <td>{result.Title} <hr></hr> {this.state.result.Plot}</td>
+            <td><img src={result.Poster} alt={result.Title} style={{width:"15%"}}></img></td>
+            <td>{result.Title}</td>
             <td>{result.Year}</td>
         </tr> 
         ))
