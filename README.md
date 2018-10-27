@@ -1,5 +1,11 @@
 Heroku site: https://sheltered-brook-93703.herokuapp.com/
 
+**Fixed - search box clears after each search now**
+
+**Need to add an error message when no results are found**
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
